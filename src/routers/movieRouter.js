@@ -5,7 +5,7 @@ import { getMovie } from "../controller/movieController"
 const movieRouter = express.Router();
 
 movieRouter.get("/",getMovie);
-// movieRouter.get("/:id");
+movieRouter.get("/:id");
 
 
 
