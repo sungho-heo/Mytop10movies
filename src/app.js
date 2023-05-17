@@ -1,7 +1,6 @@
 import express from 'express';
 import "dotenv/config";
 import morgan from 'morgan';
-import userRouter from './routers/userRouter';
 import movieRouter from './routers/movieRouter';
 
 const app = express();
@@ -18,7 +17,7 @@ app.get("/", ((req, res) => {
     res.send("Hello world");
 }))
 
-app.use("/users", userRouter);
+
 app.use("/movies", movieRouter);
 
 
