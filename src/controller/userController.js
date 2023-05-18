@@ -6,13 +6,13 @@ export const allUsers = (req, res) => {
 }
 
 export const userCreate = async (req, res) => {
-    let user;
     try {
-        user = await User.create({
+        await User.create({
             email: email,
             username: username,
             password: password
         });
+        User.save();
     } catch (error) {
         return res.status(400).json({ error: "Already user" });
     }

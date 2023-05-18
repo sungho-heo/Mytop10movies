@@ -10,17 +10,19 @@ export const getMovie = async (req, res) => {
 
 export const postMovie = async (req, res) => {
   const movie = await axios(
-    `${apiLink}/movie/popular?api_key=${process.env.API_KEY}&page=1&language=kr-ko`
+    `${apiLink}/movie/popular?api_key=${process.env.API_KEY}&page=1`
   )
     .then((json) => json)
     .then((result) => result.data.results)
     .catch((error) => error)
-  const { adult, genre_ids, original_language, original_title, overview, popularity, release_date, title, video, vote_average, vote_count } = movie[0];
+  const { genre_ids, original_language,
+            original_title, overview,
+            popularity, release_date,
+            title, video, vote_average, vote_count } = movie[1]; 
   try {
-    await Video.create({
-      adult: adult,
+    const newVideo = await Video.create({
       genre_ids: genre_ids,
-      orginal_language: original_language,
+      original_language: original_language,
       original_title: original_title,
       overview: overview,
       popularity: popularity,
@@ -28,15 +30,19 @@ export const postMovie = async (req, res) => {
       title: title,
       video: video,
       vote_average: vote_average,
-      vote_count: vote_count,
+      vote_count:vote_count,
     })
+    newVideo.save();
   } catch (error) {
-    return res.status(404).json({ error: error });
+    return res.status(400).send({ error });
   }
   return res.end();
 };
 
-export const oneMovie = (req, res) => {
-  
+
+export const oneMovie = async(req, res) => {
+  const { id } = req.params;
+  const video = await Video.findById(id);
+  return res.send({ video });
 }
 

@@ -1,6 +1,8 @@
 import express from 'express';
 import "dotenv/config";
 import "./db.js";
+import "./models/Video";
+import "./models/User";
 import morgan from 'morgan';
 import movieRouter from './routers/movieRouter';
 import userRouter from './routers/userRouter';
