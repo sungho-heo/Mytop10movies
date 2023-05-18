@@ -1,11 +1,11 @@
 import express from 'express';
-import { getMovie } from "../controller/movieController"
+import { getMovie, oneMovie, postMovie } from "../controller/movieController"
 
 
 const movieRouter = express.Router();
 
-movieRouter.get("/",getMovie);
-movieRouter.get("/:id");
+movieRouter.route("/").get(getMovie).post(postMovie);
+movieRouter.get("/:id", oneMovie);
 
 
 
