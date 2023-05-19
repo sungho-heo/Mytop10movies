@@ -4,8 +4,8 @@ import Video from "../models/Video.js";
 const apiLink = "https://api.themoviedb.org/3";
 
 export const getMovie = async (req, res) => {
-  const videos = Video;
-  return res.send({ Video });
+  const videos = await Video.find({});
+  return res.send(videos);
 }
 
 export const postMovie = async (req, res) => {
