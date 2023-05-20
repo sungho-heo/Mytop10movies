@@ -6,6 +6,7 @@ export const allUsers = async(req, res) => {
 }
 
 export const userCreate = async (req, res) => {
+    const { email, username, password } = req.params;
     try {
         const user =await User.create({
             email: email,
@@ -21,5 +22,6 @@ export const userCreate = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id);
+    await User.findByIdAndDelete(id);
+    return res.status(200);
 }
