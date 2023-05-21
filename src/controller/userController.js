@@ -16,7 +16,7 @@ export const userCreate = async (req, res) => {
         user.save();
         return res.send({ user });
     } catch (error) {
-        return res.status(400).json({ error: "Already user" });
+        return res.status(400).send({ error });
     }
 }
 
