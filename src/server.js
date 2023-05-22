@@ -8,7 +8,8 @@ const app = express();
 const loggerMorgan = morgan("dev");
 
 app.use(loggerMorgan);
-app.use(express.urlencoded({ extend: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("Hello world")
 })
